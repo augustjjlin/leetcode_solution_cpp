@@ -3,10 +3,10 @@
 class Solution {
  public:
     void solveSudoku(std::vector<std::vector<char> >& board) {
-        backtrack(9, 9, 0, 0, &board);
+        BackTrack(9, 9, 0, 0, &board);
     }
 
-    bool backtrack(
+    bool BackTrack(
         int M,
         int N,
         int r,
@@ -17,36 +17,31 @@ class Solution {
         }
 
         if (c == N) {
-            return backtrack(M, N, r + 1, 0, board);
+            return BackTrack(M, N, r + 1, 0, board);
         }
 
-        for (int i = r; i < M; ++i) {
-            for (int j = c; j < N; ++j) {
-                if ((*board)[i][j] != '.') {
-                    return backtrack(M, N, i, j + 1, board);
-                }
+        if ((*board)[r][c] != '.') {
+            return BackTrack(M, N, r, c + 1, board);
+        }
 
-                for (char k = '1'; k <= '9'; ++k) {
-                    if (!isValid(M, N, i, j, k, board)) {
-                        continue;
-                    }
-
-                    (*board)[i][j] = k;
-
-                    if (backtrack(M, N, i, j + 1, board)) {
-                        return true;
-                    }
-
-                    (*board)[i][j] = '.';
-                }
-
-                return false;
+        for (char k = '1'; k <= '9'; ++k) {
+            if (!IsValid(M, N, r, c, k, board)) {
+                continue;
             }
+
+            (*board)[r][c] = k;
+
+            if (BackTrack(M, N, r, c + 1, board)) {
+                return true;
+            }
+
+            (*board)[r][c] = '.';
         }
+
         return false;
     }
 
-    bool isValid(
+    bool IsValid(
         int M,
         int N,
         int r,
