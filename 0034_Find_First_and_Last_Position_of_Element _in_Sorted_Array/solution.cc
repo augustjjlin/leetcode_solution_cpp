@@ -4,11 +4,11 @@ class Solution {
  public:
     std::vector<int> searchRange(std::vector<int>& nums, int target) {
         return std::vector<int> {
-            lower_bound(nums, target),
-            upper_bound(nums, target)};
+            LowerBound(nums, target),
+            UpperBound(nums, target)};
     }
 
-    int lower_bound(const std::vector<int>& nums, int target) {
+    int LowerBound(const std::vector<int>& nums, int target) {
         int left = 0, right = nums.size(), mid;
 
         while (left < right) {
@@ -28,7 +28,7 @@ class Solution {
         return nums[left] == target ? left : -1;
     }
 
-    int upper_bound(const std::vector<int>& nums, int target) {
+    int UpperBound(const std::vector<int>& nums, int target) {
         int left = 0, right = nums.size(), mid;
 
         while (left < right) {
