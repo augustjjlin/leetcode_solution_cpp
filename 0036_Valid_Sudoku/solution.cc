@@ -2,7 +2,7 @@
 
 class Solution {
  public:
-    bool isValidSudoku(std::vector<std::vector<char> >& board) {
+    bool isValidSudoku(const std::vector<std::vector<char> >& board) {
         const int M = 9;
         const int N = 9;
 
@@ -12,7 +12,7 @@ class Solution {
                     continue;
                 }
 
-                if (!isValid(M, N, i, j, board)) {
+                if (!IsValid(M, N, i, j, board)) {
                     return false;
                 }
             }
@@ -21,7 +21,7 @@ class Solution {
         return true;
     }
 
-    bool isValid(
+    bool IsValid(
         int M,
         int N,
         int r,
